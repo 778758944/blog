@@ -1,0 +1,12 @@
+doctype
+html
+	head
+		title loopback with jade
+		link(rel='stylesheet', href='/build/reset.css')
+		link(rel='stylesheet', href='/style.css')
+	body
+		div(id='root')!=react
+		script(type='text/javascript').
+			var initial=!{JSON.stringify({counter:counter,news:news})}
+			console.log(initial);
+		script(src='/index.js')

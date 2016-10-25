@@ -1,0 +1,131 @@
+doctype
+html
+	head
+		title wangedit
+		link(rel='stylesheet', href='/src/style/reset.css')
+		link(rel='stylesheet', href='/src/wangedit/css/wangEditor.min.css')
+	body
+		p
+			label(for='title') title
+			input(type='text',id='title')
+		p
+			label(for='summary') summary
+			input(type='textarea',id='summary',style="width:500px;height:300px;vertical-align:top")
+		div(id='root',style='height:300px;')
+			p 请输入内容。。。 
+		btn(id='tj') 提交
+		//- btn(id='btn1') destory
+		//- btn(id='btn2') recovery
+
+		//- btn(id='getContent') getContent
+		//- div
+		//- 	btn(id='cc') clear
+		//- div(style='height:1000px')
+		script(src='/src/wangedit/js/lib/jquery-1.10.2.min.js')
+		script(src='/src/wangedit/js/wangEditor.min.js')
+		script(type='text/javascript').
+			var edit=new wangEditor('root');
+			//自定义属性
+			//- edit.config.menus=['source','img'];
+			edit.config.colors={
+				"#f00":"red",
+				"#fff":"white"
+			}
+			edit.config.fontsizes={
+				1:"100px",
+				2:"14px"
+			}
+
+			edit.config.uploadImgUrl='http://localhost:3000/uploadImg'
+			edit.create();
+
+
+			$('#tj').on('click',function(){
+				var title=$('#title').val();
+				var summary=$('#summary').val();
+				var content=edit.$txt.html();
+
+				console.log(title,summary,content);
+
+				if(title && summary && content){
+					var newData={
+						title:title,
+						summary:summary,
+						content:content,
+						time:new Date().getTime()
+					}
+
+					$.post('/api/articles/createNews',newData,function(res){
+						console.log(res);
+						if(res.code==200){
+							alert('提交成功');
+						}
+					})
+				}
+				else{
+					alert('请完善数据');
+				}
+			})
+
+			//- document.querySelector('#btn1').onclick=function(){
+			//- 	edit.destroy();
+			//- }
+
+			//- $('#getContent').on('click',function(){
+			//- 	console.log(edit.$txt.html())
+			//- 	console.log(edit.$txt.text())
+			//- 	console.log(edit.$txt.formatText())
+			//- })
+
+			//- $('#btn2').on('click',function(){
+			//- 	alert('haha');
+			//- 	edit.undestroy();
+			//- })
+
+			//- $('#cc').on('click',function(){
+			//- 	edit.clear();
+			//- })
+
+			//- edit.onchange=function(){
+			//- 	console.log(edit.$txt.html());
+			//- }
+
+			//- edit.disable();
+
+			//- var edit2=new wangEditor('txt');
+			//- edit2.create();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
