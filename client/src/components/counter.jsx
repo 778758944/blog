@@ -26,7 +26,7 @@ class Counter extends React.Component{
 		const {increment,incrementIfOdd,incrementSync,decrement,counter,news}=this.props;
 		console.log(news);
 		var items=this.props.news.map(function(ele,index){
-			return <ArticleItem title={ele.title} summary={ele.summary} key={index} time={ele.time}/>
+			return <ArticleItem title={ele.title} summary={ele.summary} key={index} time={ele.time} id={ele.id}/>
 		})
 
 		return (

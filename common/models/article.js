@@ -2,6 +2,7 @@ module.exports = function(Article) {
 	Article.getArticleItem=function(start,offset,cb){
 		Article.find({
 			fields:{
+				id:true,
 				title:true,
 				time:true,
 				summary:true,
@@ -65,6 +66,34 @@ module.exports = function(Article) {
 			{arg:"msg",type:"string"}
 		],
 		http:{arg:'/createNews',verb:"post"}
+	})
+
+	Article.getArticleById=function(id,cb){
+		if(id){
+			Article.findById(id,function(err,data){
+				if(err){
+					cb(null,0,err,'内部错误');
+				}
+				else{
+					cb(null,200,data,"success");
+				}
+			})
+		}
+		else{
+			cb(null,0,{},'缺少参数')
+		}
+	}
+
+	Article.remoteMethod('getArticleById',{
+		accepts:[
+			{arg:"id",type:'number'}
+		],
+		returns:[
+			{arg:"code",type:"number"},
+			{arg:"data",type:"object"},
+			{arg:"msg",type:"string"}
+		],
+		http:{arg:"/getArticleById",verb:"post"}
 	})
 };
 

@@ -7,9 +7,11 @@
 import {combineReducers} from 'redux'
 import counter from './counter'
 import news from './news'
+import comment from './comment'
+import detail from './detail'
 
 require('../lib/ajax');
 
-const rootReducer=combineReducers({counter,news});
+const rootReducer=combineReducers({counter,news,comment,detail});
 
 export default rootReducer;

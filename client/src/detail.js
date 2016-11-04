@@ -10,7 +10,10 @@ import {Provider} from 'react-redux'
 import configureStore from './store/configureStore'
 import {render} from 'react-dom'
 
-var store=configureStore();
+// console.log(initial);
+
+var store=configureStore(initial);
+
 
 
 render(<Provider store={store}><Detail/></Provider>,document.getElementById("root"));

@@ -9,12 +9,13 @@ import {connect} from 'react-redux'
 import Detail from '../components/detail.jsx'
 import * as DetailActions from '../actions/detail'
 
+// bindActionCreators(DetailActions);
+
 
 
 function mapPropsState(state){
 	return {
-		news:state.news,
-		comments:state.comments
+		detail:state.detail
 	}
 }
 

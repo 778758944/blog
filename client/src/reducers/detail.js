@@ -1,17 +1,9 @@
 /**
  * 
  * @authors Your Name (you@example.org)
- * @date    2016-10-24 16:38:29
+ * @date    2016-11-04 22:45:57
  * @version $Id$
  */
-export default function DetailReducer(state=[],action){
-	switch(action.type){
-		case 'add':
-		state.comments.push('今天天气真好');
-		return state;
-		break;
-
-		default:
-			return state;
-	}
+export default function Detail(state={},action){
+	return state;
 }

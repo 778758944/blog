@@ -154,6 +154,16 @@ html,body{
 	/*float: left;*/
 }
 
+.txtContent p{
+	font-size: 16px;
+	line-height: 1.8;
+	margin-top: 15px;
+	color: #444;
+}
+.detailWrap{
+	padding-top:30px;
+}
+
 
 
 

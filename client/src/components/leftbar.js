@@ -45,7 +45,7 @@ class ArticleItem extends Component{
 		return (
 			<div className='articleitem_wrap'>
 				<div className='articleitem_top'>
-					<a href='' className='articleitem_title'>{this.props.title}</a>
+					<a href={'/detail/'+this.props.id} className='articleitem_title'>{this.props.title}</a>
 					<div className='articleitem_info'>
 						<p className='articleitem_time'>{this.props.time}</p>
 						<p className='articleitem_comment'>5 Comments</p>
@@ -54,7 +54,7 @@ class ArticleItem extends Component{
 				<p className='sub_content'>
 					{this.props.summary}
 				</p>
-				<a href='' className='readMore'>继续阅读&gt;&gt;</a>
+				<a href={'/detail/'+this.props.id} className='readMore'>继续阅读&gt;&gt;</a>
 			</div>
 			)
 	}

@@ -5,10 +5,8 @@
  * @version $Id$
  */
 export function addComment(delay){
-	return (dispatch)=>{
-		setTimeout(function(){
-			dispatch('add');
-		},delay)
+	return {
+		type:'add'
 	}
 }
 
