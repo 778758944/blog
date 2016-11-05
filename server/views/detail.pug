@@ -3,9 +3,9 @@ html
 	head
 		title blog detail
 		link(rel='stylesheet', href='/build/reset.css')
-		link(rel='stylesheet', href='/style.css')
+		link(rel='stylesheet', href='/build/style.css')
 	body
 		div(id='root')!=react
 		script(type='text/javascript').
 			var initial=!{JSON.stringify({detail:detail})}
-		script(src='/detail.js')
+		script(src='/build/detail.js')

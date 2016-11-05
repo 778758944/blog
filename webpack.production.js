@@ -10,7 +10,7 @@ var HtmlwebpackPlugin=require('html-webpack-plugin');
 var ExtractTextPlugin=require('extract-text-webpack-plugin');
 var autoprefixer=require('autoprefixer');
 var cssnano=require('cssnano');
-var cssnext=require('postcss-cssnext');
+var cssnext=require('cssnext');
 var precss=require('precss');
 
 module.exports={
@@ -37,6 +37,11 @@ module.exports={
 	    	chunks:['detail'],
 	    	template:'./client/src/index-tmp.html'
 	    }),
+	    new webpack.optimize.UglifyJsPlugin({
+	    	compress:{
+	    		warnings:false
+	    	}
+	    }),
 	    new ExtractTextPlugin("style.css")
 	],
 	module:{
@@ -46,6 +51,7 @@ module.exports={
 				loader:'babel',
 				query:{
 					presets:['es2015','react'],
+					plugins:['transform-remove-console'],
 					compact:false
 				}
 			},

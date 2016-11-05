@@ -15,12 +15,17 @@ var config=require('../webpack.config');
 
 
 var app = module.exports = loopback();
-var compiler=webpack(config);
-app.use(webpackDevMiddleware(compiler,{noInfo:false}));
-app.use(webpackHotMiddleware(compiler));
+
+var node_env=process.env.NODE_ENV;
+console.log(node_env);
+if(node_env!='production'){
+  var compiler=webpack(config);
+  app.use(webpackDevMiddleware(compiler,{noInfo:false}));
+  app.use(webpackHotMiddleware(compiler));
+}
 
 app.set('views','./server/views');
-app.set('view engine','jade');
+app.set('view engine','pug');
 
 app.start = function() {
   // start the web server

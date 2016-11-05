@@ -93,7 +93,7 @@ module.exports = function(server) {
 
     function* gen(){
       var data=yield pp(id);
-      console.log(data);
+      // console.log(data);
       res.render('detail',{
         react:ReactDOM.renderToString(Detailstr({detail:data})),
         detail:data
