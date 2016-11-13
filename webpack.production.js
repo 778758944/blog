@@ -9,9 +9,9 @@ var webpack=require('webpack');
 var HtmlwebpackPlugin=require('html-webpack-plugin');
 var ExtractTextPlugin=require('extract-text-webpack-plugin');
 // var autoprefixer=require('autoprefixer');
-var cssnano=require('cssnano');
+// var cssnano=require('cssnano');
 var cssnext=require('postcss-cssnext');
-// var precss=require('precss');
+var precss=require('precss');
 
 module.exports={
 	entry:{
@@ -87,7 +87,7 @@ module.exports={
 		}
 	},
 	postcss:function(){
-		return [cssnext, cssnano]
+		return [cssnext, precss]
 	}
 }
 
