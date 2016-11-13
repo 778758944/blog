@@ -11,7 +11,6 @@ var boot = require('loopback-boot');
 var webpackDevMiddleware=require('webpack-dev-middleware');
 var webpackHotMiddleware=require('webpack-hot-middleware');
 var webpack=require('webpack');
-var config=require('../webpack.config');
 
 
 var app = module.exports = loopback();
@@ -19,8 +18,9 @@ var app = module.exports = loopback();
 var node_env=process.env.NODE_ENV;
 console.log(node_env);
 if(node_env!='production'){
+  var config=require('../webpack.config');
   var compiler=webpack(config);
-  app.use(webpackDevMiddleware(compiler,{noInfo:false}));
+  app.use(webpackDevMiddleware(compiler,{noInfo:false,stats:{colors:true}}));
   app.use(webpackHotMiddleware(compiler));
 }
 

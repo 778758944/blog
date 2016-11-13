@@ -21,8 +21,8 @@ var uploadImg=function(req,res){
 			var img=files.wangEditorH5File;
 			var img_path=path.resolve(__dirname,'../../client/upload/',img.name);
 			var web_path='/upload/'+img.name;
-			console.log(img_path);
-			console.log(web_path);
+			// console.log(img_path);
+			// console.log(web_path);
 			var readStream=fs.createReadStream(img.path);
 			var writeStream=fs.createWriteStream(img_path);
 			readStream.pipe(writeStream);

@@ -5,12 +5,6 @@
  * @version $Id$
  */
 
-// require('babel-polyfill')
-
-// require('babel-register')({
-//   presets:['es2015','react']
-// })
-
 require('node-jsx').install({
   extension:'.jsx'
 })
@@ -39,13 +33,15 @@ module.exports = function(server) {
 
   router.get('/news', function(req,res){
     var article=server.models.article;
+    console.log('to route news');
     article.find({
       skip:0,
       fileds:{
         id:true,
         time:true,
         title:true,
-        summary:true
+        summary:true,
+        content:false
       },
       limit:10
     },function(err,data){
@@ -53,6 +49,7 @@ module.exports = function(server) {
         res.json(err);
       }
       else{
+            // console.log('data',data);
             res.render('index',{
               react:ReactDOM.renderToString(Counterstr({counter:1,news:data})),
               counter:1,
@@ -69,6 +66,7 @@ module.exports = function(server) {
   router.post('/uploadImg',routerHandle.uploadImg);
 
   router.get('/detail/:id',function(req,res){
+    // console.log('to detail');
     var id=req.params.id;
     var article=server.models.article;
     var pp=function(id){
@@ -85,15 +83,8 @@ module.exports = function(server) {
     }
 
 
-    // pp(id).then(function(data){
-    //   console.log('data',data);
-    // },function(err){
-    //   console.log(err);
-    // })
-
     function* gen(){
       var data=yield pp(id);
-      // console.log(data);
       res.render('detail',{
         react:ReactDOM.renderToString(Detailstr({detail:data})),
         detail:data
@@ -101,32 +92,6 @@ module.exports = function(server) {
     }
 
     co(gen);
-
-    // var g=gen();
-    // console.log(g.next());
-
-
-
-
-
-
-
-
-    // co(gen);
-
-    // var article=server.models.article;
-
-    // article.findById(id,function(err,data){
-    //   if(err){
-    //     console.log(err);
-    //   }
-    //   else{
-    //     console.log(data);
-    //     res.json(data);
-    //   }
-    // })
-
-    
   })
 
 

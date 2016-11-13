@@ -10,7 +10,7 @@ import Counter from '../components/counter.jsx'
 import * as CounterActions from '../actions/counter'
 
 
-console.log('ssss',bindActionCreators(CounterActions));
+// console.log('ssss',bindActionCreators(CounterActions));
 
 
 function mapStateToProps(state){

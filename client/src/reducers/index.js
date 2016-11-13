@@ -10,6 +10,8 @@ import news from './news'
 import comment from './comment'
 import detail from './detail'
 
+// console.log('ajax',ajax);
+
 require('../lib/ajax');
 
 const rootReducer=combineReducers({counter,news,comment,detail});

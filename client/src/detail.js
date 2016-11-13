@@ -8,7 +8,7 @@ import React from 'react'
 import Detail from './containers/Detail'
 import {Provider} from 'react-redux'
 import configureStore from './store/configureStore'
-import {render} from 'react-dom'
+import {render} from 'ReactDOM'
 
 // console.log(initial);
 

@@ -8,16 +8,17 @@ var path=require('path');
 var webpack=require('webpack');
 var HtmlwebpackPlugin=require('html-webpack-plugin');
 var ExtractTextPlugin=require('extract-text-webpack-plugin');
-var autoprefixer=require('autoprefixer');
+// var autoprefixer=require('autoprefixer');
 var cssnano=require('cssnano');
 var cssnext=require('postcss-cssnext');
 var precss=require('precss');
+var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 module.exports={
 	devtool:'eval-source-map',
 	entry:{
-		index:'./client/src/index',
-		detail:'./client/src/detail'
+		index:['./client/src/index',hotMiddlewareScript],
+		detail:['./client/src/detail',hotMiddlewareScript]
 	},
 	output:{
 		path:path.join(__dirname,'client/build'),
@@ -44,6 +45,15 @@ module.exports={
 			{
 				test:/\.js[x]?$/,
 				loader:'babel',
+				exclude:function(path){
+					var a=path.indexOf('node_modules');
+					if(a==-1){
+						return false;
+					}
+					else{
+						return true;
+					}
+				},
 				query:{
 					presets:['es2015','react'],
 					compact:false
@@ -57,10 +67,23 @@ module.exports={
 				test:/\.(jpg||png)$/,
 				loader:'url?limit=400&name=imgs/[name]-[hash].[ext]'
 			}
-		]
+		],
+		noParse:[/redux-thunk/]
+	},
+	externals:{
+		react:true,
+		ReactDOM:true,
+		redux:true
+	},
+	resolve:{
+		alias:{
+			ReactDOM:"react-dom",
+			"react-redux":'react-redux/dist/react-redux.min.js',
+			"redux-thunk":'redux-thunk/dist/redux-thunk.min.js'
+		}
 	},
 	postcss:function(){
-		return [autoprefixer, cssnext, precss, cssnano]
+		return [precss,cssnext]
 	}
 }
 

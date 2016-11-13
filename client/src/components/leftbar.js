@@ -5,6 +5,7 @@
  * @version $Id$
  */
 import React,{Component} from 'react'
+var showTime=require('../lib/timer')
 
 // var leftbar_img=require('../images/left-bg2.jpg');
 
@@ -42,12 +43,13 @@ class ArticleItem extends Component{
 	}
 
 	render(){
+		var showtime=showTime(this.props.time);
 		return (
 			<div className='articleitem_wrap'>
 				<div className='articleitem_top'>
 					<a href={'/detail/'+this.props.id} className='articleitem_title'>{this.props.title}</a>
 					<div className='articleitem_info'>
-						<p className='articleitem_time'>{this.props.time}</p>
+						<p className='articleitem_time'>{showtime}</p>
 						<p className='articleitem_comment'>5 Comments</p>
 					</div>
 				</div>

@@ -1,3 +1,8 @@
+$timeColor:rgb(85,85,85);
+
+
+
+
 html,body{
 	height: 100%;
 }
@@ -126,7 +131,8 @@ html,body{
 }
 .articleitem_time{
 	font-size: 13px;
-	color: rgb(85, 85, 85);
+	// color: rgb(85, 85, 85);
+	color:$timeColor;
 	margin-bottom: 10px;
 }
 .articleitem_comment{

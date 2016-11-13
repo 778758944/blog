@@ -5,8 +5,8 @@
  * @version $Id$
  */
 import React,{Component} from 'react'
-import {render} from 'react-dom'
 import {LeftBar} from './leftbar'
+var showTime=require('../lib/timer')
 
 // require('../style/reset.css');
 // require('../style/main.css');
@@ -24,6 +24,7 @@ class Detail extends Component{
 		// var detail=this.props.detail;
 		// console.log(this.props);
 		var detail=this.props.detail;
+		var showtime=showTime(detail.time);
 
 		return (
 			<div className='all_wrap'>
@@ -33,7 +34,7 @@ class Detail extends Component{
 						<div className='articleitem_top'>
 							<a href='javascript:' className='articleitem_title'>{detail.title}</a>
 							<div className='articleitem_info'>
-								<p className='articleitem_time'>{detail.time}</p>
+								<p className='articleitem_time'>{showtime}</p>
 								<p className='articleitem_comment'>5 Comments</p>
 							</div>
 						</div>

@@ -6,6 +6,7 @@
  */
 import React from 'react'
 import {LeftBar,ArticleItem} from './leftbar'
+var showTime=require('../lib/timer')
 
 class Counter extends React.Component{
 	constructor(props){
@@ -15,12 +16,12 @@ class Counter extends React.Component{
 		}
 	}
 	componentDidMount(){
-		post('/api/articles/getArticleItem',{start:0,offset:10},function(res){
-			var data=res.data;
-			// this.setState({
-			// 	news:data
-			// })
-		}.bind(this));
+		// post('/api/articles/getArticleItem',{start:0,offset:10},function(res){
+		// 	var data=res.data;
+		// 	// this.setState({
+		// 	// 	news:data
+		// 	// })
+		// }.bind(this));
 	}
 	render(){
 		const {increment,incrementIfOdd,incrementSync,decrement,counter,news}=this.props;

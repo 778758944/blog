@@ -8,13 +8,12 @@ var path=require('path');
 var webpack=require('webpack');
 var HtmlwebpackPlugin=require('html-webpack-plugin');
 var ExtractTextPlugin=require('extract-text-webpack-plugin');
-var autoprefixer=require('autoprefixer');
+// var autoprefixer=require('autoprefixer');
 var cssnano=require('cssnano');
-var cssnext=require('cssnext');
-var precss=require('precss');
+var cssnext=require('postcss-cssnext');
+// var precss=require('precss');
 
 module.exports={
-	devtool:'eval-source-map',
 	entry:{
 		index:'./client/src/index',
 		detail:'./client/src/detail'
@@ -48,6 +47,15 @@ module.exports={
 		loaders:[
 			{
 				test:/\.js[x]?$/,
+				exclude:function(path){
+					var a=path.indexOf('node_modules');
+					if(a==-1){
+						return false;
+					}
+					else{
+						return true;
+					}
+				},
 				loader:'babel',
 				query:{
 					presets:['es2015','react'],
@@ -63,10 +71,23 @@ module.exports={
 				test:/\.(jpg||png)$/,
 				loader:'url?limit=400&name=imgs/[name]-[hash].[ext]'
 			}
-		]
+		],
+		noParse:[/redux-thunk/]
+	},
+	externals:{
+		react:true,
+		ReactDOM:true,
+		redux:true
+	},
+	resolve:{
+		alias:{
+			ReactDOM:"react-dom",
+			"react-redux":'react-redux/dist/react-redux.min.js',
+			"redux-thunk":'redux-thunk/dist/redux-thunk.min.js'
+		}
 	},
 	postcss:function(){
-		return [autoprefixer, cssnext, precss, cssnano]
+		return [cssnext, cssnano]
 	}
 }
 

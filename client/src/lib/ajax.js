@@ -230,9 +230,83 @@
 		return p;
 	}
 
+	// console.log('module',module);
+
 
 	window.ajax = ajax;
 	window.post = post;
 	window.get = get;
+	// if(false){
+	// 	module.exports={
+	// 		get:get,
+	// 		post:post,
+	// 		ajax:ajax
+	// 	}
+	// }
 })(window);
+
+(function(window){
+	function showTime(timestamp,lj,isTime){
+		var date=new Date(timestamp),
+			year=date.getFullYear(),
+			mon=date.getMonth()+1>9 ? date.getMonth()+1:'0'+(date.getMonth()+1),
+			day=date.getDate()>9 ? date.getDate():'0'+date.getDate(),
+			hour=date.getHours()>9 ? date.getHours():'0'+date.getHours(),
+			min=date.getMinutes()>9 ? date.getMinutes():'0'+date.getMinutes(),
+			sec=date.getSeconds()>9 ? date.getMinutes():'0'+date.getSeconds();
+
+		var l=lj || "-";
+
+		if(isTime){
+			return year+l+mon+l+day+' '+hour+':'+min+":"+sec;
+		}
+		else{
+			return year+l+mon+l+day;
+		}
+
+	}
+
+	window.showTime=showTime;
+})(window)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

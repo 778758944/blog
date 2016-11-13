@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "main": "server/server.js",
+  "main": "server/entry.js",
   "scripts": {
     "start": "node-dev ./server/entry.js",
     "deploy": "webpack --config webpack.production.js",
