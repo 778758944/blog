@@ -56,7 +56,7 @@ class ArticleItem extends Component{
 				<p className='sub_content'>
 					{this.props.summary}
 				</p>
-				<a href={'/detail/'+this.props.id} className='readMore'>继续阅读&gt;&gt;</a>
+				<a href={'/detail/'+this.props.id} className='readMore'>继续阅读 <i>&gt;&gt;</i></a>
 			</div>
 			)
 	}

@@ -1,10 +1,12 @@
 $timeColor:rgb(85,85,85);
+$linkColor:#2479CC;
 
 
 
 
 html,body{
 	height: 100%;
+	font-family: arial;
 }
 
 #root,.all_wrap{
@@ -124,6 +126,7 @@ html,body{
 	display: inline-block;
 	float: left;
 	width: 70%;
+	line-height: 35px;
 }
 
 .articleitem_title:hover{
@@ -168,6 +171,30 @@ html,body{
 }
 .detailWrap{
 	padding-top:30px;
+}
+.pnWrap{
+	padding: 20px 0;
+	overflow: hidden;
+}
+
+.pnPrev{
+	float: left;
+}
+
+.pnNext{
+	float: right;
+}
+
+.pnPrev,.pnNext{
+	text-decoration: none;
+	font-size: 14px;
+	color:$linkColor;
+}
+.pnPrev i,.pnNext i{
+	font-size: 8px;
+}
+.readMore i{
+	font-size: 11px;
 }
 
 

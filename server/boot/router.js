@@ -24,6 +24,10 @@ var routerHandle=require("../handle/routerhandle");
 var Counterstr=React.createFactory(Counter);
 var Detailstr=React.createFactory(Detail);
 
+var env=process.env.NODE_ENV;
+
+var listRoute=env == 'production' ? '/':'/news';
+
 
 
 
@@ -31,32 +35,76 @@ module.exports = function(server) {
   // Install a `/` route that returns server status
   var router = server.loopback.Router();
 
-  router.get('/news', function(req,res){
+  router.get(listRoute, function(req,res){
+    // req.params.num);
+    // console.log(req.params.num);
+    var pn=req.params.num*10||0;
     var article=server.models.article;
-    console.log('to route news');
-    article.find({
-      skip:0,
-      fileds:{
-        id:true,
-        time:true,
-        title:true,
-        summary:true,
-        content:false
-      },
-      limit:10
-    },function(err,data){
-      if(err){
-        res.json(err);
-      }
-      else{
-            // console.log('data',data);
-            res.render('index',{
-              react:ReactDOM.renderToString(Counterstr({counter:1,news:data})),
-              counter:1,
-              news:data
-            });
-      }
+    var p1=new Promise(function(resolve,reject){
+      article.find({
+        skip:pn,
+        fields:{
+          id:true,
+          time:true,
+          title:true,
+          summary:true
+        },
+        limit:10
+      },function(err,data){
+        if(err){
+          reject(err);
+        }
+        else{
+          resolve(data);
+        }
+      })
     })
+
+    var p2=new Promise(function(resolve,reject){
+      article.count(function(err,count){
+        if(err){
+          reject(err);
+        }
+        else{
+          resolve(count);
+        }
+      })
+    })
+
+
+    Promise.all([p1,p2]).then(function(data){
+      var lastPage=Math.ceil(data[1]/10);
+      var news=data[0]
+      res.render('index',{
+        react:ReactDOM.renderToString(Counterstr({counter:1,news:news,pageNum:1})),
+        counter:1,
+        pageNum:1,
+        news:news,
+        lastPage:lastPage
+      })
+    })
+    // article.find({
+    //   skip:pn,
+    //   fields:{
+    //     id:true,
+    //     time:true,
+    //     title:true,
+    //     summary:true
+    //   },
+    //   limit:10
+    // },function(err,data){
+    //   if(err){
+    //     res.json(err);
+    //   }
+    //   else{
+    //         console.log('data',data);
+    //         res.render('index',{
+    //           react:ReactDOM.renderToString(Counterstr({counter:1,news:data})),
+    //           counter:1,
+    //           news:data
+    //         });
+    //   }
+    // })
   });
 
   router.get('/edit',function(req,res){

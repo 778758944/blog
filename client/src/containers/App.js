@@ -16,7 +16,9 @@ import * as CounterActions from '../actions/counter'
 function mapStateToProps(state){
 	return {
 		counter:state.counter,
-		news:state.news
+		news:state.news,
+		pageNum:state.pageNum,
+		lastPage:state.lastPage
 	}
 }
 

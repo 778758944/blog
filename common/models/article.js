@@ -13,7 +13,7 @@ module.exports = function(Article) {
 			order:'time ASC'
 		},function(err,data){
 			if(err){
-				cb(err);
+				cb(null,{code:400,data:err,msg:"error"});
 			}
 			else{
 				cb(null,{code:200,data:data,msg:'success'});

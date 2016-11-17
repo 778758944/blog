@@ -8,8 +8,8 @@ import {INCREMENT_COUNTER,DECREMENT_COUNTER} from '../actions/counter'
 
 export default function news(state=[],action){
 	switch(action.type){
-		case INCREMENT_COUNTER:
-			return state;
+		case 'changeNews':
+			return action.data;
 		break;
 
 		case DECREMENT_COUNTER:

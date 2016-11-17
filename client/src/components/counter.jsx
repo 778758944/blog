@@ -12,23 +12,40 @@ class Counter extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			news:[]
+			
 		}
 	}
 	componentDidMount(){
-		// post('/api/articles/getArticleItem',{start:0,offset:10},function(res){
-		// 	var data=res.data;
-		// 	// this.setState({
-		// 	// 	news:data
-		// 	// })
-		// }.bind(this));
+		window.addEventListener('popstate',function(e){
+			if(!e.state){
+				location.reload();
+			}
+			else{
+				var num=e.state.num;
+				var data=e.state.data;
+				this.props.setPageNum(num);
+				this.props.changeNews(data);
+			}
+		}.bind(this));
+
 	}
 	render(){
-		const {increment,incrementIfOdd,incrementSync,decrement,counter,news}=this.props;
-		console.log(news);
+		const {changeNews,setPageNum,lastPage,pageNum,goToPage,increment,incrementIfOdd,incrementSync,decrement,counter,news}=this.props;
+		// console.log(news);
+		// console.log(lastPage);
 		var items=this.props.news.map(function(ele,index){
 			return <ArticleItem title={ele.title} summary={ele.summary} key={index} time={ele.time} id={ele.id}/>
 		})
+
+		var prev=pageNum==1 ? '':<a className='pnPrev' href='javascript:' onClick={()=>{
+							// this.initial--;
+							goToPage('mm');
+						}}><i>&lt;&lt;</i> 上一页</a>
+
+		var next=pageNum==lastPage ? '':<a className='pnNext' href='javascript:' onClick={()=>{
+							// this.initial++;
+							goToPage('pp');
+						}}>下一页 <i>&gt;&gt;</i></a>
 
 		return (
 			<div className='all_wrap'>
@@ -46,6 +63,10 @@ class Counter extends React.Component{
 				</p>
 				<div className='itemoutwrap'>
 					{items}
+					<div className='pnWrap'>
+						{prev}
+						{next}
+					</div>
 				</div>
 			</div>
 			)
