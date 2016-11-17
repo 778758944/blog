@@ -26,7 +26,7 @@ var Detailstr=React.createFactory(Detail);
 
 var env=process.env.NODE_ENV;
 
-var listRoute=env == 'production' ? '/':'/news';
+var listRoute=env == 'production' ? '/:num':'/news/:num';
 
 
 
@@ -38,7 +38,8 @@ module.exports = function(server) {
   router.get(listRoute, function(req,res){
     // req.params.num);
     // console.log(req.params.num);
-    var pn=req.params.num*10||0;
+    var num=req.params.num;
+    var pn=(num-1)*10||0;
     var article=server.models.article;
     var p1=new Promise(function(resolve,reject){
       article.find({
@@ -76,9 +77,9 @@ module.exports = function(server) {
       var lastPage=Math.ceil(data[1]/10);
       var news=data[0]
       res.render('index',{
-        react:ReactDOM.renderToString(Counterstr({counter:1,news:news,pageNum:1})),
+        react:ReactDOM.renderToString(Counterstr({counter:1,news:news,pageNum:num,lastPage:lastPage})),
         counter:1,
-        pageNum:1,
+        pageNum:parseInt(num,10),
         news:news,
         lastPage:lastPage
       })

@@ -39,12 +39,13 @@ class Counter extends React.Component{
 
 		var prev=pageNum==1 ? '':<a className='pnPrev' href='javascript:' onClick={()=>{
 							// this.initial--;
-							goToPage('mm');
+							
+							goToPage(pageNum-1);
 						}}><i>&lt;&lt;</i> 上一页</a>
 
 		var next=pageNum==lastPage ? '':<a className='pnNext' href='javascript:' onClick={()=>{
 							// this.initial++;
-							goToPage('pp');
+							goToPage(pageNum+1);
 						}}>下一页 <i>&gt;&gt;</i></a>
 
 		return (

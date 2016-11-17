@@ -17,11 +17,11 @@ class LeftBar extends Component{
 	render(){
 		return (
 			<div className='leftBar_wrap'>
-				<a className='img_wrap' href='http://www.baidu.com'></a>
+				<a className='img_wrap' href='/'></a>
 				<h1><a className='left_name' href='http://www.baidu.com'>Jerry Qu</a></h1>
 				<p className='left_zym'>专注web端开发</p>
 				<ul className='left_mulu'>
-					<li><a href=''>首页</a></li>
+					<li><a href='/'>首页</a></li>
 					<li><a href=''>专题</a></li>
 					<li><a href=''>归档</a></li>
 					<li><a href=''>友链</a></li>

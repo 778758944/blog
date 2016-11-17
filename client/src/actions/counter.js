@@ -72,23 +72,25 @@ export function setPageNum(num){
 
 export function goToPage(start,offset){
 	var offset=offset || 10;
-	if(start=='mm'){
-		pageNum--;
-	}
-	else{
-		pageNum++;
-	}
+	var start=start||1;
+	console.log(start);
+	// if(start=='mm'){
+	// 	pageNum--;
+	// }
+	// else{
+	// 	pageNum++;
+	// }
 	// console.log(pageNum);
 	return (dispatch)=>{
-		post('/api/articles/getArticleItem',{start:(pageNum-1)*offset,offset:offset},function(data){
+		post('/api/articles/getArticleItem',{start:(start-1)*offset,offset:offset},function(data){
 			// location.hash=start+1;
 			var state={
-				num:pageNum,
+				num:start,
 				data:data.data
 			};
 
-			history.pushState(state,null,pageNum);
-			dispatch(changePageNum(start));
+			history.pushState(state,null,start);
+			dispatch(setPageNum(start));
 			dispatch(changeNews(data.data));
 		})
 	}
