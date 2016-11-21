@@ -73,7 +73,7 @@ export function setPageNum(num){
 export function goToPage(start,offset){
 	var offset=offset || 10;
 	var start=start||1;
-	console.log(start);
+	// console.log(start);
 	// if(start=='mm'){
 	// 	pageNum--;
 	// }
@@ -92,6 +92,27 @@ export function goToPage(start,offset){
 			history.pushState(state,null,start);
 			dispatch(setPageNum(start));
 			dispatch(changeNews(data.data));
+		})
+	}
+}
+
+export function goToNext(start,offset,news,cb){
+	var offset=offset || 10,
+		start=start || 1,
+		news=news || [];
+
+	return (dispatch)=>{
+		post('/api/articles/getArticleItem',{start:(start-1)*offset,offset:offset},function(data){
+
+			// cb && cb();
+			if(data.data.length>0){
+				cb && cb();
+				dispatch(setPageNum(start));
+				dispatch(changeNews(news.concat(data.data)));
+			}
+			else{
+				cb && cb();
+			}
 		})
 	}
 }

@@ -14,8 +14,16 @@ class Counter extends React.Component{
 		this.state={
 			
 		}
+
+		this.viewHeight=0;
+		this.scrollHeight=0;
+		this.scrollTop=0;
+		this.items=0;
+		this.canGetNews=true;
+		this.load=''
 	}
 	componentDidMount(){
+		// console.log(this.load);
 		window.addEventListener('popstate',function(e){
 			if(!e.state){
 				location.reload();
@@ -28,6 +36,28 @@ class Counter extends React.Component{
 			}
 		}.bind(this));
 
+		this.viewHeight=document.body.clientHeight;
+		this.scrollHeight=document.body.scrollHeight;
+		this.items=this.props.news.length;
+
+		window.addEventListener('scroll',function(e){
+			var scrollTop=document.body.scrollTop;
+			if(scrollTop+this.viewHeight>=this.scrollHeight&&this.canGetNews){
+				this.canGetNews=false;
+				// this.load.style.display='block';
+				this.props.goToNext(this.props.pageNum+1,10,this.props.news,function(){
+					this.load.innerHTML='全部加载完毕';
+				}.bind(this));
+			}
+		}.bind(this))
+
+
+	}
+	componentDidUpdate(){
+		this.viewHeight=document.body.clientHeight;
+		this.scrollHeight=document.body.scrollHeight;
+		this.canGetNews=true;
+		// this.load.style.display='none';
 	}
 	render(){
 		const {changeNews,setPageNum,lastPage,pageNum,goToPage,increment,incrementIfOdd,incrementSync,decrement,counter,news}=this.props;
@@ -67,6 +97,9 @@ class Counter extends React.Component{
 					<div className='pnWrap'>
 						{prev}
 						{next}
+					</div>
+					<div className='loading' ref={(e)=>this.load=e}>
+						努力加载中...
 					</div>
 				</div>
 			</div>
