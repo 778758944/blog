@@ -42,7 +42,9 @@ class Counter extends React.Component{
 
 		window.addEventListener('scroll',function(e){
 			var scrollTop=document.body.scrollTop;
+			this.viewHeight=document.body.clientHeight;
 			if(scrollTop+this.viewHeight>=this.scrollHeight&&this.canGetNews){
+				console.log('fetch news');
 				this.canGetNews=false;
 				// this.load.style.display='block';
 				this.props.goToNext(this.props.pageNum+1,10,this.props.news,function(){

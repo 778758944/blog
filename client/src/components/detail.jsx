@@ -32,11 +32,11 @@ class Detail extends Component{
 				<div className='itemoutwrap'>
 					<div className='detailWrap'>
 						<div className='articleitem_top'>
-							<a href='javascript:' className='articleitem_title'>{detail.title}</a>
 							<div className='articleitem_info'>
 								<p className='articleitem_time'>{showtime}</p>
 								<p className='articleitem_comment'>5 Comments</p>
 							</div>
+							<a href='javascript:' className='articleitem_title'>{detail.title}</a>
 						</div>
 					</div>
 					<div className='txtContent' dangerouslySetInnerHTML={{__html:detail.content}}>

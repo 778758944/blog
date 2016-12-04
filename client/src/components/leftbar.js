@@ -47,11 +47,11 @@ class ArticleItem extends Component{
 		return (
 			<div className='articleitem_wrap'>
 				<div className='articleitem_top'>
-					<a href={'/detail/'+this.props.id} className='articleitem_title'>{this.props.title}</a>
 					<div className='articleitem_info'>
 						<p className='articleitem_time'>{showtime}</p>
 						<p className='articleitem_comment'>5 Comments</p>
 					</div>
+					<a href={'/detail/'+this.props.id} className='articleitem_title'>{this.props.title}</a>
 				</div>
 				<p className='sub_content'>
 					{this.props.summary}
