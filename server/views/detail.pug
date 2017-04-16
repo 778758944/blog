@@ -3,7 +3,7 @@ html
 	head
 		title blog detail
 		link(rel='stylesheet', href='/build/reset.css')
-		link(rel='stylesheet', href='/style.css')
+		link(rel='stylesheet', href='/build/style.css')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 	body
 		div(id='root')!=react
@@ -14,4 +14,4 @@ html
 			var initial=!{JSON.stringify({detail:detail})}
 			var react=React
 			var redux=Redux
-		script(src='/detail.js')
+		script(src='/build/detail.js')
