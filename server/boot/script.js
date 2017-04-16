@@ -7,7 +7,7 @@
 module.exports=function(app){
 	var db=app.dataSources.mongodb;
 
-	// var Article=app.models.article;
+	var Article=app.models.article;
 
 	var data=[
 		{
@@ -48,14 +48,14 @@ module.exports=function(app){
 	// 	}
 	// })
 
-	db.automigrate('article',function(err){
-		if(err){
-			console.log(err);
-		}
-		else{
-			console.log('success');
-		}
-	})
+	// db.automigrate('article',function(err){
+	// 	if(err){
+	// 		console.log(err);
+	// 	}
+	// 	else{
+	// 		console.log('success');
+	// 	}
+	// })
 
 
 
